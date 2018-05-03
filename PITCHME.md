@@ -16,11 +16,8 @@
 ---
 
 - golang.org/x/net/context
-
-很多第三方库都还依赖于这个包
-
+很多第三方库都依赖于这个包
 - [context](https://blog.golang.org/context) 
-
 1.7 之后引入标准库
 
 ---
