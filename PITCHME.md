@@ -36,6 +36,7 @@
 ---
 @title[接口定义]
 ### 接口定义
+<br>
 ```golang
 // A Context carries a deadline, cancelation signal, and request-scoped values
 // across API boundaries. Its methods are safe for simultaneous use by multiple
@@ -64,8 +65,19 @@ type Context interface {
 - Context values 是一个树节点
 - Value 查找是回溯树的方式 （从下到上）
 ---
+@title[基础Context]
+### 基础Context
+<br>
+```golang
+func Background() Context
+func TODO() Context
+```
 
-@title[context 提供的API]
+
+---
+@title[context提供的API]
+### context 相关API
+<br>
 ```golang 
  func WithCancel(parent Context) (ctx Context, cancel CancelFunc)
  func WithDeadline(parent Context, d time.Time) (Context, CancelFunc)
@@ -83,4 +95,4 @@ ctx5, _ := context.WithTimeout(ctx3, time.Second * 6)
 ctx6 := context.WithValue(ctx5, "userID", 12)
 ```
 ---
-![](asserts/images/context-chain-1.svg)
+(asserts/images/context-chain-1.svg)[]!
