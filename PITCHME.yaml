@@ -2,7 +2,7 @@ theme : night
 
 layout : center
 
-logo: asserts/images/logo1.png
+logo: asserts/images/logo.png
 
 theme-override : assets/css/PITCHME.css
 
