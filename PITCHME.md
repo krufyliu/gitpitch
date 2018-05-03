@@ -95,4 +95,4 @@ ctx5, _ := context.WithTimeout(ctx3, time.Second * 6)
 ctx6 := context.WithValue(ctx5, "userID", 12)
 ```
 ---
-![](asserts/images/context-chain-1.jpg)
+![](asserts/images/context-chain-2.jpg)
