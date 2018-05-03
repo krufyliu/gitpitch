@@ -15,9 +15,9 @@
 
 ---
 
-- golang.org/x/net/context
+- golang.org/x/net/context    
 很多第三方库都依赖于这个包
-- [context](https://blog.golang.org/context) 
+- [context](https://blog.golang.org/context)     
 1.7 之后引入标准库
 
 ---
@@ -62,19 +62,20 @@ type Context interface {
 - Context values 是一个树节点
 - Value 查找是回溯树的方式 （从下到上）
 ---
-@title[基础Context]
-### 基础Context
+@title[context提供的API]
+### Context创建API
 <br>
 ```golang
+// Background returns a non-nil, empty Context. It is never canceled, has no values, 
+// and has no deadline. It is typically used by the main function, initialization, 
+// and tests, and as the top-level Context for incoming requests.
 func Background() Context
+// TODO returns a non-nil, empty Context. Code should use context.
+// TODO when it's unclear which Context to use or it is not yet available (because the surrounding function has not yet been extended to accept a Context parameter). 
+// TODO is recognized by static analysis tools that determine whether Contexts are propagated correctly in a program.
 func TODO() Context
 ```
-
-
 ---
-@title[context提供的API]
-### context 相关API
-<br>
 ```golang 
  func WithCancel(parent Context) (ctx Context, cancel CancelFunc)
  func WithDeadline(parent Context, d time.Time) (Context, CancelFunc)
@@ -93,3 +94,17 @@ ctx6 := context.WithValue(ctx5, "userID", 12)
 ```
 ---
 ![](asserts/images/context-chain-1.jpg)
+
+---
+@title[context在代码库中应用]
+### context在代码库中应用
+
+- net/http
+- database/sql
+- golang.org/x/sync/errgroup
+
+---
+@title[如何集成到我们的API中]
+### 如何集成到我们的API中
+- 如果有 Context，将其作为第一个变量
+- 结构体方式,即作为结构体的一个变量，如http.Request
