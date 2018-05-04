@@ -55,13 +55,6 @@ type Context interface {
 }
 ```
 ---
-@title[Context的特点]
-### Context的特点
-- 是不可变的(immutable)树节点
-- Cancel 一个节点，会连带 Cancel 其所有子节点 （从上到下）
-- Context values 是一个树节点
-- Value 查找是回溯树的方式 （从下到上）
----
 @title[context提供的API]
 ### Context创建API
 <br>
@@ -82,6 +75,13 @@ func TODO() Context
  func WithTimeout(parent Context, timeout time.Duration) (Context, CancelFunc)
  func WithValue(parent Context, key, val interface{}) Context
 ```
+---
+@title[Context的特点]
+### Context的特点
+- 是不可变的(immutable)树节点
+- Cancel 一个节点，会连带 Cancel 其所有子节点 （从上到下）
+- Context values 是一个树节点
+- Value 查找是回溯树的方式 （从下到上）
 ---
 ### 示例 Context 链
 ```golang
@@ -108,3 +108,6 @@ ctx6 := context.WithValue(ctx5, "userID", 12)
 ### 如何集成到我们的API中
 - 如果有 Context，将其作为第一个变量
 - 结构体方式,即作为结构体的一个变量，如http.Request
+
+---
+### 完
